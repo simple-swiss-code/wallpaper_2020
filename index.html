@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<div>
+  <h1>
+    Porting a website
+    <a href="https://tapetowaniewarszawa.pl/">tapetowaniewarszawa.pl</a> to jekyll
+  </h1>
+</div>
+
+<div>
+  <form
+    method="POST"
+    action="{{ site.form_url }}"
+    enctype="multipart/form-data"
+  >
+    <div>
+      <label for="name">Name</label>
+      <input id="name" type="text" name="name" required />
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" required />
+    </div>
+    <div>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" cols="30" rows="10" required></textarea>
+    </div>
+    <div>
+      <label for="finding">How did you find us?</label>
+      <select name="finding" id="finding">
+        <option value="search">Search</option>
+        <option value="friend">Recommandation by a friend</option>
+        <option value="facebook">Facebook</option>
+        <option value="advertisement">Advertisement</option>
+      </select>
+    </div>
+    <div>
+      <label for="attach">File upload</label>
+      <input type="file" name="attach" id="attach" />
+    </div>
+    <button type="submit">Send</button>
+  </form>
+</div>
