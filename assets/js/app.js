@@ -105,16 +105,16 @@ $("#contactForm").validate({
             crossDomain: true,
             success: function(result) {
                 formEl.addClass('hidden');
-                $('.thank-you').removeClass('hidden');
-                $('.thank-you--message>h1').text(formJson.message);
+                $('.contact__thank-you').removeClass('hidden');
+                $('.contact-thank-you__message>h1').text(formJson.message);
 
                 console.log(result);
             },
             error: function(xhr, resp, text) {
                 const body = escape(formJson.message);
                 formEl.addClass('hidden');
-                $('.sending-error').removeClass('hidden');
-                $('.sending-error .email').attr('href', 'mailto: ' + fallbackEmail + '?subject=' + fallbackSubject + '&body=' + body);
+                $('.contact__error').removeClass('hidden');
+                $('.contact__error .email').attr('href', 'mailto: ' + fallbackEmail + '?subject=' + fallbackSubject + '&body=' + body);
 
                 console.log(xhr, resp, text);
             }
