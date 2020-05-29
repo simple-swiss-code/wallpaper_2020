@@ -16,6 +16,7 @@
       <div class="field half">
         <label for="howDidYouFindUs">How did you find about us?</label>
         <select name="howDidYouFindUs" id="howDidYouFindUs">
+          <option value="">None</option>
           <option value="search">Search</option>
           <option value="friend">Recommandation by friend</option>
           <option value="facebook">Facebook</option>
@@ -29,6 +30,12 @@
       <div class="field">
         <label for="fileUpload">File Upload</label>
         <input type="file" name="fileUpload" id="fileUpload" accept="pdf,doc,docx,odt,image/*" multiple>
+      </div>
+      <div class="field">
+        <label for="captcha">Captcha</label>
+        <!-- This data-sitekey need to be change for production -->
+        <div class="g-recaptcha" id="captcha" data-sitekey="6LeLCvwUAAAAALtUc5i8oXCB0fJVi4TezIW0jIh7" data-callback="onReCaptchaOK"></div>
+        <input type="hidden" name="hiddenReCaptcha" id="hiddenReCaptcha">
       </div>
     </div>
     <ul class="actions">
