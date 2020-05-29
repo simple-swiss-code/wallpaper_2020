@@ -1,3 +1,5 @@
+---
+---
 // add file size validator
 $.validator.addMethod('fileSize', function(value, element, sizeLimit) {
     console.log()
@@ -71,7 +73,7 @@ $("#contactForm").validate({
     submitHandler: function(form) {
         console.log("send some stuff")
         // TODO We need to hidden the email from a bot and this value should be taken from Liquid later on
-        const fallbackEmail = 'example@example.com';
+        const fallbackEmail = '{{ site.email }}';
         const fallbackSubject = escape('Tell us a overview message');
 
         const formEl = $("#contactForm")
@@ -96,7 +98,7 @@ $("#contactForm").validate({
                 xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
             },
             type: "POST",
-            url: "https://ltune.de/43bfdb75b5ed9378eb901809a0267a0b15e5506b/accept.php",
+            url: "{{ site.form_url }}",
             data: formData,
             contentType: false,
             processData: false,
