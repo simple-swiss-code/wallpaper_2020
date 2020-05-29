@@ -237,6 +237,21 @@
 		opacity: 1.0;
 	}
 
+  img {
+      max-width: 100%;
+  }
+
+  .thank-you {
+      position: relative;
+  }
+
+  .thank-you--message {
+      display: inline-block;
+      position: absolute;
+      top: 10%;
+      left: 10%;
+  }
+
   .hidden {
-    display: none;
+      display: none;
   }
