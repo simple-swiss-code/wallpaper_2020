@@ -1,5 +1,5 @@
 <section>
-  <form method="post" action="#">
+  <form id="contactForm" method="POST" action="" enctype="multipart/form-data">
     <div class="fields">
       <div class="field half">
         <label for="name">Name</label>
@@ -33,8 +33,8 @@
       </div>
       <div class="field">
         <label for="captcha">Captcha</label>
-        <!-- This data-sitekey need to be change for production -->
-        <div class="g-recaptcha" id="captcha" data-sitekey="6LeLCvwUAAAAALtUc5i8oXCB0fJVi4TezIW0jIh7" data-callback="onReCaptchaOK"></div>
+        <input type="hidden" name="shared_secret" value="{{ site.form_shared_secret_key }}" />
+        <div class="g-recaptcha" data-sitekey="{{ site.recaptcha_site_key }}" data-callback="onReCaptchaOK"></div>
         <input type="hidden" name="hiddenReCaptcha" id="hiddenReCaptcha">
       </div>
     </div>

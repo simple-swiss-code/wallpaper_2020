@@ -28,6 +28,8 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "/wallpaper_2020" # the subpath of your site, e.g. /blog
 url: "https://simple-swiss-code.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 form_url: https://getform.io/f/4e348667-034e-44a1-99cf-0a8a430a180b
+recaptcha_site_key: 6LeLCvwUAAAAALtUc5i8oXCB0fJVi4TezIW0jIh7
+form_shared_secret_key: 70259406b8d46e07674e8b7317c56a4a803cac35
 
 # Build settings
 plugins:
