@@ -132,7 +132,8 @@
 
 	input[type="text"],
 	input[type="password"],
-	input[type="email"],
+  input[type="email"],
+  input[type="tel"],
 	select {
 		height: _size(element-height);
 	}
@@ -235,3 +236,7 @@
 		color: _palette(fg-light) !important;
 		opacity: 1.0;
 	}
+
+  .hidden {
+      display: none;
+  }

@@ -10,10 +10,14 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	</head>
 	<body class="is-preload">
 		{{ content }}
     {% include footer.html %}
+    <div class="spinner hidden">
+      <div class="lds-dual-ring"></div>
+    </div>
   </body>
 </html>
