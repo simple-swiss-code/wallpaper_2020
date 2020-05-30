@@ -71,7 +71,7 @@ $("#contactForm").validate({
         }
     },
     submitHandler: function(form) {
-        console.log("send some stuff")
+        console.log("Form submitting...");
         const fallbackEmailEncode = '{{ site.email_encode }}';
         const fallbackSubject = escape('Tell us a overview message');
 
@@ -98,7 +98,7 @@ $("#contactForm").validate({
             success: function(result) {
                 console.log(result);
 
-                formEl.addClass('hidden');
+                $('.contact__form').addClass('hidden');
                 $('.contact__thank-you').removeClass('hidden');
                 $('.contact-thank-you__message>h1').text(formJson.message);
             },
@@ -106,7 +106,7 @@ $("#contactForm").validate({
                 console.log(xhr, response, text);
 
                 const body = escape(formJson.message);
-                formEl.addClass('hidden');
+                $('.contact__form').addClass('hidden');
                 $('.contact__error').removeClass('hidden');
                 $('.contact__error .email').attr('href', 'mailto: ' + window.atob(fallbackEmailEncode) + '?subject=' + fallbackSubject + '&body=' + body);
             },
@@ -125,14 +125,14 @@ $("#contactForm").validate({
 // transform array to json
 // based on https://stackoverflow.com/a/11339012
 function getFormData($form) {
-    var unIndexed_array = $form.serializeArray();
-    var indexed_array = {};
+  const unindexedArray = $form.serializeArray();
+  const indexedArray = {};
 
-    $.map(unIndexed_array, function(n, i) {
-        indexed_array[n['name']] = n['value'];
-    });
+  $.map(unindexedArray, function(element, _) {
+      indexedArray[element['name']] = element['value'];
+  });
 
-    return indexed_array;
+  return indexedArray;
 }
 
 /**
