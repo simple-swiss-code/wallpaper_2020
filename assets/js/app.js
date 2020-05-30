@@ -60,7 +60,7 @@ $("#contactForm").validate({
             required: function() {
                 return grecaptcha.getResponse() === "";
             }
-        },
+        }
     },
     messages: {
         email: {
@@ -72,8 +72,7 @@ $("#contactForm").validate({
     },
     submitHandler: function(form) {
         console.log("send some stuff")
-        // TODO We need to hidden the email from a bot and this value should be taken from Liquid later on
-        const fallbackEmail = '{{ site.email }}';
+        const fallbackEmailEncode = '{{ site.email_encode }}';
         const fallbackSubject = escape('Tell us a overview message');
 
         const formEl = $("#contactForm")
@@ -85,38 +84,39 @@ $("#contactForm").validate({
         $.each($('#attachment')[0].files, function(i, file) {
             formData.append('file-' + i, file);
         });
-        const recaptchaToken = grecaptcha.getResponse();
-        if (recaptchaToken.length) {
-            grecaptcha.reset();
-            formEl[0].reset();
-            console.log("Verify suceess");
-        } else {
-            console.log("Please verify reCAPTCHA")
-        }
         $.ajax({
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            },
             type: "POST",
             url: "{{ site.form_url }}",
             data: formData,
             contentType: false,
             processData: false,
             crossDomain: true,
+            beforeSend: function(xhr) {
+              xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+              $('.spinner').removeClass('hidden');
+            },
             success: function(result) {
+                console.log(result);
+
                 formEl.addClass('hidden');
                 $('.contact__thank-you').removeClass('hidden');
                 $('.contact-thank-you__message>h1').text(formJson.message);
-
-                console.log(result);
             },
-            error: function(xhr, resp, text) {
+            error: function(xhr, response, text) {
+                console.log(xhr, response, text);
+
                 const body = escape(formJson.message);
                 formEl.addClass('hidden');
                 $('.contact__error').removeClass('hidden');
-                $('.contact__error .email').attr('href', 'mailto: ' + fallbackEmail + '?subject=' + fallbackSubject + '&body=' + body);
-
-                console.log(xhr, resp, text);
+                $('.contact__error .email').attr('href', 'mailto: ' + window.atob(fallbackEmailEncode) + '?subject=' + fallbackSubject + '&body=' + body);
+            },
+            complete: function() {
+                const recaptchaToken = grecaptcha.getResponse();
+                if (recaptchaToken.length) {
+                    grecaptcha.reset();
+                }
+                formEl[0].reset();
+                $('.spinner').addClass('hidden');
             }
         });
     }
