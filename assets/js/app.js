@@ -98,7 +98,8 @@ $("#contactForm").validate({
             success: function(result) {
                 console.log(result);
 
-                $('.contact__form').addClass('hidden');
+                $('.contact__form').remove();
+                $('.contact__error').remove();
                 $('.contact__thank-you').removeClass('hidden');
                 $('.contact-thank-you__message>h1').text(formJson.message);
             },
@@ -106,16 +107,12 @@ $("#contactForm").validate({
                 console.log(xhr, response, text);
 
                 const body = escape(formJson.message);
-                $('.contact__form').addClass('hidden');
+                $('.contact__form').remove();
+                $('.contact__thank-you').remove();
                 $('.contact__error').removeClass('hidden');
                 $('.contact__error .email').attr('href', 'mailto: ' + window.atob(fallbackEmailEncode) + '?subject=' + fallbackSubject + '&body=' + body);
             },
             complete: function() {
-                const recaptchaToken = grecaptcha.getResponse();
-                if (recaptchaToken.length) {
-                    grecaptcha.reset();
-                }
-                formEl[0].reset();
                 $('.spinner').addClass('hidden');
             }
         });
